@@ -8,11 +8,12 @@ use App\Models\Comment;
 use App\Models\Product;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -22,6 +23,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'admin',
         'name',
         'email',
         'password',
@@ -60,6 +62,13 @@ class User extends Authenticatable
     public function favoris(): HasMany
     {
         return $this->hasMany(Favori::class);
+    }
+
+    //Autorisation admin 
+
+    public function canAccessFilament(): bool
+    {
+        return $this->admin == 1; 
     }
 
 }
