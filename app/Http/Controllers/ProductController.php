@@ -13,6 +13,7 @@ class ProductController extends Controller
 
         //Lister tout les produits
 
+        //Requête 
         if($id !== 0){
             $products = Product::where('category_id', $id)
                             ->orderby('created_at', 'desc')
@@ -23,6 +24,15 @@ class ProductController extends Controller
         }
         
         return view('welcome', compact('products')); 
+    }
+
+    public function detail(Product $product) 
+    {
+        // dd($product) ;
+
+        
+
+        return view('detail', compact('product')) ; 
     }
 
 }
