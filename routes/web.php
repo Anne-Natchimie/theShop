@@ -26,6 +26,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::get('/cart/update/{cart}/{quantity}', [CartController::class, 'update'])->name('cart-update');
     Route::get('/cart/delete-one/{cart}', [CartController::class, 'deleteOne'])->name('cart-delete-one');
     Route::get('/cart/delete', [CartController::class, 'delete'])->name('cart-delete');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
