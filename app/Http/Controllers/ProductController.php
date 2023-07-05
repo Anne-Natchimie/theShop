@@ -29,10 +29,18 @@ class ProductController extends Controller
     public function detail(Product $product) 
     {
         // dd($product) ;
-
-        
-
         return view('detail', compact('product')) ; 
+    }
+
+    // méthode recherche à partir d'un mot clé 
+    public function search(String $keyword = '') 
+    {
+        $product = Product::where('name', 'LIKE', $keyword.'%') 
+        ->limit(3)->get(); 
+        // dd($product); 
+
+        return response()->json($product); 
+
     }
 
 }
