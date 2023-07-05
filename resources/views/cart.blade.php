@@ -24,7 +24,7 @@
                         <p class="lg:text-4xl text-3xl font-black leading-9 text-gray-800 dark:text-white">Summary</p>
                         <div class="flex items-center justify-between pt-16">
                         <p class="text-base leading-none text-gray-800 dark:text-white">Subtotal</p>
-                        <p class="text-base leading-none text-gray-800 dark:text-white">,000</p>
+                        <p class="text-base leading-none text-gray-800 dark:text-white">{{$total}} €</p>
                         </div>
                         <div class="flex items-center justify-between pt-5">
                         <p class="text-base leading-none text-gray-800 dark:text-white">Shipping</p>
@@ -38,7 +38,7 @@
                     <div>
                         <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
                         <p class="text-2xl leading-normal text-gray-800 dark:text-white">Total</p>
-                        <p id="total" class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white">0</p>
+                        <p id="total" class="text-2xl font-bold leading-normal text-right text-gray-800 dark:text-white">{{$total}} €</p>
                         </div>
                         <button onclick="checkoutHandler1(true)" class="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white dark:hover:bg-gray-700">Checkout</button>
 

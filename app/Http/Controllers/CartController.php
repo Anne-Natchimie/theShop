@@ -8,29 +8,37 @@ use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
-    //
+    //Calcul le total du panier en fonction du produit, de sa quantité et de son prix 
+    private function calculTotal($cartItems) 
+    {
+        $total = 0 ; 
+
+        foreach ($cartItems as $cart) {
+            $total += ($cart->quantity * $cart->product->price); 
+        }
+
+        return $total ; 
+    }
 
     public function index() 
     {
         // Afficher les produits qui sont dans le panier
         $cartItems = Cart::where("user_id", Auth::user()->id)->get() ; 
+        $total = $this->calculTotal($cartItems); 
 
-        // Retourner vers la vue du panier vide
-        return view('cart', compact('cartItems')); 
+        // Retourner vers la vue du panier
+        return view('cart', compact('cartItems', 'total')); 
     }
 
-    public function update(Cart $cart, $quantity /* Request $request */) 
+    public function update(Cart $cart, $quantity = 1 /* Request $request */) 
     {
         // Mettre à jour la quantité
         $cart->update(['quantity'=> $quantity]); 
-        $total = 0 ; 
 
         // Lire tout les articles dans le panier 
         $cartItems = Cart::where("user_id", Auth::user()->id)->get();
 
-        foreach ($cartItems as $cart) {
-            $total = $total + ($cart->quantity * $cart->product->price); 
-        }
+        $total = $this->calculTotal($cartItems); 
 
         // Retourner une réponse 
         return response()->json([   'result' => true, 
