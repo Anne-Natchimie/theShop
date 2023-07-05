@@ -53,58 +53,6 @@
 
     </section>
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-
-<script>
-
-    $(document).ready(
-
-        ()=>{
-            console.log('document chargé'); 
-
-            // Find selected quantity
-            $(".cartChangeQuantity").change(
-                (event)=>{
-
-                    // console.log('quantity :', event.target.value); 
-                    // console.log('ref :', event.target.id); 
-
-                    const quantity  = event.target.value ;
-                    const id        = event.target.id ; 
-
-                    // Envoi des données en ajax  
-                    $.ajax('cart/update/'+id+'/'+quantity).done(
-                        res =>{
-                            console.log('res:', res.result); 
-                            console.log('total:', res.total); 
-                            $("#total").text(res.total);
-
-                        }
-
-                    )
-                }
-            )
-
-        }
-
-    )
-
-        // Vide le panier
-        function emptyCart(){
-            window.location = "{{route('cart-delete')}}"
-        }
-
-        // Change la quantité du panier, id = cart 
-        const changeQuantity = (id = 0) => {
-
-            console.log('changeQuantity debut'); 
-            console.log('cart Id :', id); 
-            console.log('changeQuantity fin'); 
-
-        }
-
-</script>
-
 <script src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js'></script>
 
 
