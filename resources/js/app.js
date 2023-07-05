@@ -35,7 +35,23 @@ $(document).ready(
 
         // Gestion du moteur de recherche
         $("#search").autocomplete({
-            source:"/search/"
+            source: function( request, response ) {
+                $.ajax( {
+                    url: "/search/"+request.term,
+                    // dataType: "jsonp",
+                    // data: {
+                    //     term: request.term
+                    // },
+                    success: function( data ) {
+                        //response( data );
+                        console.log(data); 
+                    }
+                    });
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+                    log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+                }
             })
 
     }
