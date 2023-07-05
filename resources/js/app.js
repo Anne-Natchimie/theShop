@@ -35,11 +35,10 @@ $(document).ready(
 
         // Gestion du moteur de recherche
         $("#search").autocomplete({
-            source:['Anne', "Betsy", "Yannick"]
+            source:"/search/"
             })
 
     }
-
 )   // End ready 
 
     // Vide le panier
